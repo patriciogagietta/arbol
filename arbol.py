@@ -1,6 +1,5 @@
 from cola import Cola
 
-
 def nodoArbol():
     nodo = {
         'info': None,
@@ -135,35 +134,11 @@ def inorden_datos(arbol):
         inorden_datos(arbol['der'])
 
 
-def inorden_villano(arbol):
-    if (arbol is not None):
-        inorden_villano(arbol['izq'])
-        if arbol['datos']['villano'] == True:
-            print(arbol['info'])
-        inorden_villano(arbol['der'])
-
-
-def inorden_empieza_con(arbol, valor):
-    if (arbol is not None):
-        inorden_empieza_con(arbol['izq'], valor)
-        if arbol['info'].startswith(valor):
-            print(arbol['info'])
-        inorden_empieza_con(arbol['der'], valor)
-
-
 def postorden(arbol):
     if (arbol is not None):
         postorden(arbol['der'])
         print(arbol['info'])
         postorden(arbol['izq'])
-
-
-def inorden_heroes(arbol):
-    if (arbol is not None):
-        inorden_heroes(arbol['izq'])
-        if arbol['datos']['villano'] == False:
-            print(arbol['info'])
-        inorden_heroes(arbol['der'])
 
 
 def busqueda(arbol, clave):
@@ -233,16 +208,6 @@ def por_nivel(arbol):
             pendientes.arribo(nodo['der'])
 
 
-def crear_bosque(arbol, bosque1, bosque2):
-    if (arbol is not None):
-        crear_bosque(arbol['izq'], bosque1, bosque2)
-        if arbol['datos']['villano'] == True:
-            insertar_nodo(bosque1, arbol['info'])
-        else:
-            insertar_nodo(bosque2, arbol['info'])
-        crear_bosque(arbol['der'], bosque1, bosque2)
-
-
 def cantidad_ocurrencias(arbol, numero):
     cont_ocurrencias = 0
     if (arbol is not None):
@@ -305,6 +270,31 @@ def inorden_contiene_valor(arbol, valor):
         inorden_contiene_valor(arbol['der'], valor)
 
 
+# ------------------ FUNCIONES EJERCICIO 5 -------------------------------------
+def inorden_villano(arbol):
+    if (arbol is not None):
+        inorden_villano(arbol['izq'])
+        if arbol['datos']['villano'] == True:
+            print(arbol['info'])
+        inorden_villano(arbol['der'])
+
+
+def inorden_heroes(arbol):
+    if (arbol is not None):
+        inorden_heroes(arbol['izq'])
+        if arbol['datos']['villano'] == False:
+            print(arbol['info'])
+        inorden_heroes(arbol['der'])
+
+
+def inorden_empieza_con(arbol, valor):
+    if (arbol is not None):
+        inorden_empieza_con(arbol['izq'], valor)
+        if arbol['info'].startswith(valor):
+            print(arbol['info'])
+        inorden_empieza_con(arbol['der'], valor)
+
+
 def postorden_heroes(arbol):
     if (arbol is not None):
         postorden_heroes(arbol['der'])
@@ -313,6 +303,19 @@ def postorden_heroes(arbol):
         postorden_heroes(arbol['izq'])
 
 
+def crear_bosque(arbol, bosque1, bosque2):
+    if (arbol is not None):
+        crear_bosque(arbol['izq'], bosque1, bosque2)
+        if arbol['datos']['villano'] == True:
+            insertar_nodo(bosque1, arbol['info'])
+        else:
+            insertar_nodo(bosque2, arbol['info'])
+        crear_bosque(arbol['der'], bosque1, bosque2)
+
+# ------------------------------------------------------------------------------
+
+
+# ------------------ FUNCIONES EJERCICIO 23 -------------------------------------
 def derrotado_por_heracles(arbol):
     if (arbol is not None):
         derrotado_por_heracles(arbol['izq'])
@@ -353,4 +356,5 @@ def criaturas_heracles(arbol):
             print(arbol['info'])
         criaturas_heracles(arbol['der'])
 
+# ----------------------------------------------------------------------------------
 
