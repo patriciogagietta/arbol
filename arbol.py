@@ -1,5 +1,6 @@
 from cola import Cola
 
+
 def nodoArbol():
     nodo = {
         'info': None,
@@ -16,7 +17,7 @@ def copiar_nodo(nodo_datos, nodo_copia):
         nodo_copia['info'] = nodo_datos['info']
         nodo_copia['der'] = nodo_datos['der']
         nodo_copia['izq'] = nodo_datos['izq']
-        if 'datos' in nodo_copia:
+        if 'datos' in nodo_datos:
             nodo_copia['datos'] = nodo_datos['datos']
 
 
@@ -200,8 +201,7 @@ def por_nivel(arbol):
     pendientes.arribo(arbol)
     while not pendientes.cola_vacia():
         nodo = pendientes.atencion()
-        print(nodo['info'], nodo['izq']['info'] if nodo['izq']
-              else None, nodo['der']['info'] if nodo['der'] else None)
+        print(nodo['info'], nodo['izq']['info'] if nodo['izq'] else None, nodo['der']['info'] if nodo['der'] else None)
         if nodo['izq']:
             pendientes.arribo(nodo['izq'])
         if nodo['der']:
@@ -314,7 +314,6 @@ def crear_bosque(arbol, bosque1, bosque2):
 
 # ------------------------------------------------------------------------------
 
-
 # ------------------ FUNCIONES EJERCICIO 23 -------------------------------------
 def derrotado_por_heracles(arbol):
     if (arbol is not None):
@@ -346,6 +345,7 @@ def modificar_criaturas_capturadas(arbol):
 
         if arbol['info'] == 'jabali de erimanto':
             arbol['datos']['capturada'] == 'heracles'
+            
         modificar_criaturas_capturadas(arbol['der'])
 
 
@@ -356,5 +356,14 @@ def criaturas_heracles(arbol):
             print(arbol['info'])
         criaturas_heracles(arbol['der'])
 
+
+def agregar_descripcion(arbol,clave,clave2):
+    if (arbol is not None):
+        agregar_descripcion(arbol['izq'], clave, clave2)
+        if arbol['info'] == clave:
+            if not 'descripcion' in arbol['datos']:
+                arbol['datos']['descripcion'] = clave2
+        agregar_descripcion(arbol['der'], clave, clave2)
+        
 # ----------------------------------------------------------------------------------
 
